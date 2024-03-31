@@ -2,6 +2,9 @@
 
 MAKEFLAGS += --no-print-directory
 
+crkbd:
+	$(MAKE) crkbd:leobarreiro
+
 QMK_USERSPACE := $(patsubst %/,%,$(dir $(shell realpath "$(lastword $(MAKEFILE_LIST))")))
 ifeq ($(QMK_USERSPACE),)
     QMK_USERSPACE := $(shell pwd)
