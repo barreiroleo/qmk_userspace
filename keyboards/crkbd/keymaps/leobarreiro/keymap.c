@@ -1,7 +1,5 @@
 #include QMK_KEYBOARD_H
 
-enum layers { _QWERTY, _LOWER, _RAISE, _ADJUST };
-
 // Tap Dance definitions;
 enum {
     TD_SFT_CAP, // Single tap for Shift, twice for Caps Lock
@@ -65,5 +63,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 // clang-format on
-
-

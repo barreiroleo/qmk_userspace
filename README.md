@@ -1,12 +1,12 @@
 # QMK Userspace
 
-- This config uses the Soundmonster's OLED implementation:
+- This config bases its OLED on the Soundmonster's implementation:
 [https://github.com/soundmonster/qmk_userspace](https://github.com/soundmonster/qmk_userspace)
 
 ## Howto build locally
 
-1. Optional. Run `setup.sh` to get the firmware repo. It's a wrapper over
-   `qmk setup` to clone the firmware repo under ~/.local/share/qmk/.
+1. Optional. Run `setup.sh` to get the firmware repo and generate the
+   `compile_commands.json`.
 1. Run `make` to build the default `keyboard:keymap`: equivalent to `make
    crkbd/rev1:leobarreiro`
 

@@ -1,7 +1,5 @@
 #include QMK_KEYBOARD_H
 
-enum layers { _QWERTY, _LOWER, _RAISE, _ADJUST };
-
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return OLED_ROTATION_270;
@@ -173,12 +171,15 @@ void render_layer_state(void) {
 
 bool oled_task_user(void) {
     // Renders the current keyboard state (layers and mods)
+    const uint8_t modifiers = get_mods() | get_oneshot_mods();
+
     render_logo();
     render_space();
     render_layer_state();
     render_space();
-    render_mod_status_gui_alt(get_mods() | get_oneshot_mods());
-    render_mod_status_ctrl_shift(get_mods() | get_oneshot_mods());
+    render_mod_status_gui_alt(modifiers);
+    render_mod_status_ctrl_shift(modifiers);
+
     return false;
 }
 #endif
