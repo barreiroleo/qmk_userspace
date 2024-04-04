@@ -11,7 +11,9 @@ enum layers { _QWERTY, _LOWER, _RAISE, _ADJUST };
 // #define QUICK_TAP_TERM 0
 // #define TAPPING_TERM 100
 
+// RGB status indicators. Retain brightness assigned.
 #define RGBLIGHT_LAYERS
+#define RGBLIGHT_LAYERS_RETAIN_VAL
 
 #ifdef RGBLIGHT_ENABLE
 #    define RGBLIGHT_EFFECT_BREATHING
