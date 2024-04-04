@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "common.h"
 
 // Light all underglow LEDs [left{0,6}, right{27,33}] when caps locks is acive
 const rgblight_segment_t PROGMEM capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, 6, HSV_RED}, {27, 6, HSV_RED});

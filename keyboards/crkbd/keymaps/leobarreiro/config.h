@@ -1,7 +1,5 @@
 #pragma once
 
-enum layers { _QWERTY, _LOWER, _RAISE, _ADJUST };
-
 // #define USE_MATRIX_I2C
 
 #define MASTER_LEFT

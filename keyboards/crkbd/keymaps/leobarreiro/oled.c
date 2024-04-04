@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "common.h"
 
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
