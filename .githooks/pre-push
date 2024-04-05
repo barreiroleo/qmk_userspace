@@ -53,10 +53,8 @@ done
 
 echo """
 Please update the latest tag:
-    git tag --delete latest
-    git tag latest
-    git push origin --delete latest
-    git push origin tag latest
+    git tag --delete latest && git tag latest && \
+    git push origin --delete latest && git push origin latest
 """
 
 exit 0
