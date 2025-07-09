@@ -8,7 +8,7 @@
 1. Optional. Run `setup.sh` to get the firmware repo and generate the
    `compile_commands.json`.
 1. Run `make` to build the default `keyboard:keymap`: equivalent to `make
-   crkbd/rev1:leobarreiro`
+   crkbd/rev1:barreiroleo`
 
 
 ## Howto build with GitHub on push
