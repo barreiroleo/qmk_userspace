@@ -29,7 +29,10 @@ setup:
 	qmk config user.overlay_dir="$(shell realpath .)"
 
 build:
-	qmk compile -kb crkbd/rev1 -km barreiroleo --compiledb
+	qmk compile -kb crkbd/rev1 -km barreiroleo --compiledb -j 0
+
+flash:
+	qmk flash -kb crkbd/rev1 -km barreiroleo -j 0
 
 clean:
 	echo QMK userspace:		$(QMK_USERSPACE)

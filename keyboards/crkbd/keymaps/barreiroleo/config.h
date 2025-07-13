@@ -38,6 +38,6 @@
 #    ifdef OLED_FONT_H
 #        undef OLED_FONT_H
 #    endif // OLED_FONT_H
-#    define OLED_FONT_H "keyboards/crkbd/keymaps/leobarreiro/glcdfont.c"
+#    define OLED_FONT_H "keyboards/crkbd/keymaps/barreiroleo/glcdfont.c"
 #    define OLED_TIMEOUT 30000
 #endif
