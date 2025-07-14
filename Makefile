@@ -20,7 +20,7 @@ endif
 #			TARGETS			 #
 ##############################
 
-.PHONY: default setup build clean
+.PHONY: default setup build flash clean
 
 all: setup build
 
@@ -32,6 +32,8 @@ build:
 	qmk compile -kb crkbd/rev1 -km barreiroleo --compiledb -j 0
 
 flash:
+	@echo "Flashing LEFT side and then RIGHT side - Connect LEFT half and press RESET..."
+	qmk flash -kb crkbd/rev1 -km barreiroleo -j 0
 	qmk flash -kb crkbd/rev1 -km barreiroleo -j 0
 
 clean:
