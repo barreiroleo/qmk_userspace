@@ -32,9 +32,16 @@ build:
 	qmk compile -kb crkbd/rev1 -km barreiroleo --compiledb -j 0
 
 flash:
-	@echo "Flashing LEFT side and then RIGHT side - Connect LEFT half and press RESET..."
+	@echo "Flashing LEFT side and then RIGHT side..."
 	qmk flash -kb crkbd/rev1 -km barreiroleo -j 0
 	qmk flash -kb crkbd/rev1 -km barreiroleo -j 0
+
+flash-eehands:
+	@echo "Flashing Handness to EEPROM..."
+	@echo "Connect the left hand first and press RESET."
+	qmk flash -kb crkbd/rev1 -km barreiroleo -bl avrdude-split-left -j 0
+	@echo "Connect the right hand first and press RESET."
+	qmk flash -kb crkbd/rev1 -km barreiroleo -bl avrdude-split-right -j 0
 
 clean:
 	echo QMK userspace:		$(QMK_USERSPACE)

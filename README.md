@@ -11,6 +11,8 @@
 1. Run `make setup` to setup the QMK firmware and configure the local keyboard repo.
 2. Run `make build` to compile and generate the `compile_commands.json` file.`
 3. Run `make flash` to flash the keyboard using the QMK CLI.
+   - Run `make flash-eehands` to set the handness (left/right) for the keyboard split.
+     This is a one-time procedure unless you later overwrite the EEPROM.
 4. Run `make`to setup and build at once.
 
 ## Howto build with GitHub on push
