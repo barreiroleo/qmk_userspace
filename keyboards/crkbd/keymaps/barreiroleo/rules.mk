@@ -12,4 +12,4 @@ OLED_DRIVER = ssd1306
 
 TAP_DANCE_ENABLE = yes
 
-SRC += ./oled.c ./rgb_layers.c
+SRC += ./oled.c ./rgb_layers.c ./debug_utils.c

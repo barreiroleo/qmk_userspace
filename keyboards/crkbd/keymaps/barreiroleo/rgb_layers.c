@@ -1,5 +1,4 @@
 #include QMK_KEYBOARD_H
-#include "debug_utils.h"
 #include "common.h"
 
 const int T_INDEX     = 6;
@@ -25,19 +24,41 @@ void set_caps_lock_indicator(uint8_t r, uint8_t g, uint8_t b) {
 }
 
 void set_lower_layer_color_indicator(uint8_t r, uint8_t g, uint8_t b) {
-    // Set left split keys (t, g, b, space) to lower layer color
-    rgb_matrix_set_color(T_INDEX, r, g, b);
-    rgb_matrix_set_color(G_INDEX, r, g, b);
-    rgb_matrix_set_color(B_INDEX, r, g, b);
-    rgb_matrix_set_color(SPACE_INDEX, r, g, b);
+    // Set left split keys (t, g, b, space) to lower layer color, scaled by user brightness
+    uint8_t brightness = rgb_matrix_get_val();
+    uint8_t sr = (r * brightness) >> 8, sg = (g * brightness) >> 8, sb = (b * brightness) >> 8;
+    rgb_matrix_set_color(T_INDEX, sr, sg, sb);
+    rgb_matrix_set_color(G_INDEX, sr, sg, sb);
+    rgb_matrix_set_color(B_INDEX, sr, sg, sb);
+    rgb_matrix_set_color(SPACE_INDEX, sr, sg, sb);
 }
 
 void set_raise_layer_color_indicator(uint8_t r, uint8_t g, uint8_t b) {
-    // Set right split keys (y, h, n, enter) to raise layer color
-    rgb_matrix_set_color(Y_INDEX, r, g, b);
-    rgb_matrix_set_color(H_INDEX, r, g, b);
-    rgb_matrix_set_color(N_INDEX, r, g, b);
-    rgb_matrix_set_color(ENTER_INDEX, r, g, b);
+    // Set right split keys (y, h, n, enter) to raise layer color, scaled by user brightness
+    uint8_t brightness = rgb_matrix_get_val();
+    uint8_t sr = (r * brightness) >> 8, sg = (g * brightness) >> 8, sb = (b * brightness) >> 8;
+    rgb_matrix_set_color(Y_INDEX, sr, sg, sb);
+    rgb_matrix_set_color(H_INDEX, sr, sg, sb);
+    rgb_matrix_set_color(N_INDEX, sr, sg, sb);
+    rgb_matrix_set_color(ENTER_INDEX, sr, sg, sb);
+}
+
+void handle_layer_indicators(void) {
+    // Handle layer indicators using highest active layer
+    switch (get_highest_layer(layer_state)) {
+        case _LOWER:
+            set_lower_layer_color_indicator(RGB_CYAN);
+            break;
+        case _RAISE:
+            set_raise_layer_color_indicator(RGB_CYAN);
+            break;
+        case _ADJUST:
+            set_lower_layer_color_indicator(RGB_CYAN);
+            set_raise_layer_color_indicator(RGB_CYAN);
+            break;
+        default:
+            break;
+    }
 }
 
 bool rgb_matrix_indicators_user(void) {
@@ -45,20 +66,7 @@ bool rgb_matrix_indicators_user(void) {
     if (host_keyboard_led_state().caps_lock) {
         set_caps_lock_indicator(RGB_RED);
     }
-
-    // Handle layer indicators
-    if (layer_state_cmp(layer_state, _LOWER)) {
-        set_lower_layer_color_indicator(RGB_CYAN);
-    }
-
-    if (layer_state_cmp(layer_state, _RAISE)) {
-        set_raise_layer_color_indicator(RGB_CYAN);
-    }
-
-    if (layer_state_cmp(layer_state, _ADJUST)) {
-        set_lower_layer_color_indicator(RGB_CYAN);
-        set_raise_layer_color_indicator(RGB_CYAN);
-    }
+    handle_layer_indicators();
 
     return false;
 }

@@ -1,5 +1,4 @@
 #include QMK_KEYBOARD_H
-#include "debug_utils.h"
 #include "common.h"
 
 // Tap Dance definitions;
@@ -65,6 +64,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 // clang-format on
+
+extern void debug_keyboard_post_init_user(void);
+extern void debug_process_record_user(uint16_t keycode, keyrecord_t *record);
 
 /// @brief Keyboard post initialization function
 void keyboard_post_init_user(void) {
