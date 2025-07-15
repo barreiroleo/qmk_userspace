@@ -48,5 +48,11 @@ clean:
 	echo QMK firmware root:	$(QMK_FIRMWARE_ROOT)
 	rm -rf $(QMK_FIRMWARE_ROOT)/.build/
 
+.PHONY: build-debug flash-debug
+build-debug:
+	$(MAKE) build CONSOLE_ENABLE=yes
+flash-debug:
+	$(MAKE) flash CONSOLE_ENABLE=yes
+
 %:
 	+$(MAKE) -C $(QMK_FIRMWARE_ROOT) $(MAKECMDGOALS) QMK_USERSPACE=$(QMK_USERSPACE)

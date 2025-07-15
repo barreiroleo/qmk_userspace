@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "common.h"
+#include "debug/utils.h"
 
 // Tap Dance definitions;
 enum {
@@ -65,20 +66,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 // clang-format on
 
-extern void debug_keyboard_post_init_user(void);
-extern void debug_process_record_user(uint16_t keycode, keyrecord_t *record);
-
-/// @brief Keyboard post initialization function
 void keyboard_post_init_user(void) {
     debug_keyboard_post_init_user();
     // Enable RGB matrix but don't override user's color settings
     rgb_matrix_enable_noeeprom();
 }
 
-/// @brief Process record user function
-/// @param keycode The keycode being processed
-/// @param record The key record
-/// @return True to continue processing, false to stop
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     debug_process_record_user(keycode, record);
     return true;
