@@ -2,6 +2,11 @@
 #include "common.h"
 #include "debug/utils.h"
 
+// is_keyboard_left() is used here for two reasons:
+// 1. Performance: Only the left half executes the logic and updates its own LEDs, avoiding unnecessary work on the right half.
+// 2. Layout: RGB matrix indices are mirrored between halves.
+//    Without this filter, turning on LEDs on the left side might light up LEDs in unintended positions on the right side.
+
 const int T_INDEX     = 6;
 const int G_INDEX     = 7;
 const int B_INDEX     = 8;
@@ -33,6 +38,9 @@ void set_caps_lock_indicator(uint8_t r, uint8_t g, uint8_t b) {
 }
 
 void set_lower_layer_color_indicator(uint8_t r, uint8_t g, uint8_t b) {
+    if (!is_keyboard_left()) {
+        return;
+    }
     // Set left split keys (t, g, b, space) to lower layer color, scaled by user brightness
     adjust_color_brightness(&r, &g, &b);
     rgb_matrix_set_color(T_INDEX, r, g, b);
@@ -42,6 +50,9 @@ void set_lower_layer_color_indicator(uint8_t r, uint8_t g, uint8_t b) {
 }
 
 void set_raise_layer_color_indicator(uint8_t r, uint8_t g, uint8_t b) {
+    if (is_keyboard_left()) {
+        return;
+    }
     // Set right split keys (y, h, n, enter) to raise layer color, scaled by user brightness
     adjust_color_brightness(&r, &g, &b);
     rgb_matrix_set_color(Y_INDEX, r, g, b);
