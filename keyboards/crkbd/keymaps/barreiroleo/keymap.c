@@ -4,12 +4,12 @@
 
 // Tap Dance definitions;
 enum {
-    TD_ALT_CTX, // Single tap for Left Alt, twice for Context Menu
-    TD_GUI_ALT, // Single tap for "LWin", twice for Left Alt
-    TD_SFT_CAP, // Single tap for Shift, twice for Caps Lock
+    TD_LALT_RALT, // Single tap for Left Alt, twice for Right Alt
+    TD_GUI_ALT,   // Single tap for "LWin", twice for Left Alt
+    TD_SFT_CAP,   // Single tap for Shift, twice for Caps Lock
 };
 tap_dance_action_t tap_dance_actions[] = {
-    [TD_ALT_CTX] = ACTION_TAP_DANCE_DOUBLE(KC_LALT, KC_APP),
+    [TD_LALT_RALT] = ACTION_TAP_DANCE_DOUBLE(KC_LALT, KC_RALT),
     [TD_GUI_ALT] = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, KC_LALT),
     [TD_SFT_CAP] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
 };
@@ -25,7 +25,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ESC,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                     TD(TD_GUI_ALT), MO(1),  KC_SPC,     KC_ENT,   MO(2), TD(TD_ALT_CTX)
+                                     TD(TD_GUI_ALT), MO(1),  KC_SPC,     KC_ENT,   MO(2), TD(TD_LALT_RALT)
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,                       KC_F11,  KC_F12, KC_HOME,  KC_END, KC_PGDN,  KC_APP,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                     TD(TD_GUI_ALT),_______, KC_SPC,     KC_ENT,   MO(3), TD(TD_ALT_CTX)
+                                     TD(TD_GUI_ALT),_______, KC_SPC,     KC_ENT,   MO(3), TD(TD_LALT_RALT)
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, KC_TILD,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                     TD(TD_GUI_ALT), MO(3),  KC_SPC,     KC_ENT, _______, TD(TD_ALT_CTX)
+                                     TD(TD_GUI_ALT), MO(3),  KC_SPC,     KC_ENT, _______, TD(TD_LALT_RALT)
                                       //`--------------------------'  `--------------------------'
   ),
 
